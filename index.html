@@ -43,6 +43,9 @@
             areaDesenho.fillRect(larguraCampo - 5, posicaoJogador2, 5, alturaRaquete);
             //bola
             areaDesenho.fillRect(posicaoBolaX,posicaoBolaY,larguraBola, alturaBola);
+            //escrever pontuaçaõ dos jogadores
+            areaDesenho.fillText('Humano ' + pontosJogador1 + ' pontos', 100, 100);
+            areaDesenho.fillText('Computador '+ pontosJogador2 + ' pontos',larguraCampo-200, 100);
             
             posicaoBolaX= posicaoBolaX+ velocidadeBolaX;
             posicaoBolaY=posicaoBolaY+velocidadeBolaY;
@@ -65,7 +68,8 @@
                     let diferencaY= posicaoBolaY-(posicaoJogador1+ alturaRaquete/2);
                     velocidadeBolaY= diferencaY * efeitoRaquete;
                 } else{
-                    pontuacaoJogador2++
+                    pontosJogador2++;
+                    
                 }
             }
             //verifica se jogador 1 fez ponto
@@ -79,6 +83,7 @@
                 }else {
                     //pontos jogador 1
                     pontosJogador1++;
+                
                 }
             }
         }
