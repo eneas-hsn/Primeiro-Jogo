@@ -14,9 +14,9 @@
             setInterval(executar, 1000 / 30);
         }
         let posicaoBolaX = posicaoBolaY = 250;
-        let velocidadeBolaX= velocidadeBolaY=2;
-        let posicaoJogador1= posicaoJogador2=400;
-        let efeitoRaquete= 0.3
+        let velocidadeBolaX= velocidadeBolaY=5;
+        let posicaoJogador1= posicaoJogador2=380;
+        let efeitoRaquete= 0.3;
         let pontosJogador1=0;
         let pontosJogador2=0;
         let folhaDesenho = document.getElementById('folha');
@@ -65,7 +65,7 @@
             {
                 if (posicaoBolaY>posicaoJogador1 && posicaoBolaY< posicaoJogador1+alturaRaquete) {
                     //rebater a bola
-                    posicaoBolaX= -velocidadeBolaX;
+                    velocidadeBolaX= -velocidadeBolaX;
 
                     let diferencaY= posicaoBolaY-(posicaoJogador1+ alturaRaquete/2);
                     velocidadeBolaY= diferencaY * efeitoRaquete;
@@ -78,14 +78,13 @@
             if (posicaoBolaX > larguraCampo) {
                 if (posicaoBolaY<posicaoJogador2+ alturaRaquete && posicaoBolaY>posicaoJogador2 ) {
                     //rebaterbola
-                    posicaoBolaY= -velocidadeBolaY;
-                    var diferencaY= posicaoBolaY- (posicaoJogador2+ alturaRaquete/2);//bola pega no meio e volta reta
+                    velocidadeBolaX= -velocidadeBolaX;
+                    let diferencaY= posicaoBolaY- (posicaoJogador2+ alturaRaquete/2);
                     velocidadeBolaY = diferencaY* efeitoRaquete;
 
                 }else {
                     //pontos jogador 1
                     pontosJogador1++;
-                
                 }
             }
         }
