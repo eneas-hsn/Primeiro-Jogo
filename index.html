@@ -11,9 +11,10 @@
     <canvas id="folha" width="600" height="500"></canvas>;
     <script>
         window.onload = function() {
-            setInterval(executar, 1000 / 30);
+            setInterval(executar, 1000 / 1000);
         }
-        let posicaoBolaX = posicaoBolaY = 10;
+        let posicaoBolaX = posicaoBolaY = 5;
+        let velocidadeBolaX= velocidadeBolaY=1;
         function executar() {
             let folhaDesenho = document.getElementById('folha');
             let areaDesenho = folhaDesenho.getContext('2d');
@@ -38,9 +39,17 @@
             //bola
             areaDesenho.fillRect(posicaoBolaX,posicaoBolaY,larguraBola, alturaBola);
             
-            posicaoBolaX++;
-            posicaoBolaY++;
-            
+            posicaoBolaX= posicaoBolaX+ velocidadeBolaX;
+            posicaoBolaY=posicaoBolaY+velocidadeBolaY;
+
+            //verifica lateral superior
+            if (posicaoBolaY <0 && velocidadeBolaY<0) {
+                velocidadeBolaY= -velocidadeBolaY;
+            }
+            //verifica lateral inferior
+            if (posicaoBolaY>alturaCampo && velocidadeBolaY>0) {
+                velocidadeBolaY= -velocidadeBolaY;
+            }
 
 
         }   
