@@ -27,6 +27,7 @@
         let alturaBola = 5;
         let larguraBola = 5;
         let alturaRaquete = 50;
+        let velocidadeJogador2= 3;
         folhaDesenho.addEventListener('mousemove', function(e){
             posicaoJogador1= e.clientY- alturaRaquete/2;
         });
@@ -71,7 +72,11 @@
                     velocidadeBolaY= diferencaY * efeitoRaquete;
                 } else{
                     pontosJogador2++;
-                    
+                    //coloca bola no centro
+                    posicaoBolaX= larguraCampo/2;
+                    posicaoBolaY=alturaCampo/2;
+                    velocidadeBolaX= -velocidadeBolaX;
+                    velocidadeBolaY=5;
                 }
             }
             //verifica se jogador 1 fez ponto
@@ -85,14 +90,21 @@
                 }else {
                     //pontos jogador 1
                     pontosJogador1++;
+                    //coloca bola no centro
+                    posicaoBolaX=larguraCampo/2;
+                    posicaoBolaY=alturaCampo/2;
+                    velocidadeBolaX= -velocidadeBolaX;
+                    velocidadeBolaY=5;
                 }
             }
-        }
-        if (posicaoJogador2 + alturaRaquete /2 < posicaoBolaY) {
-            posicaoJogador2= posicaoJogador2+ velocidadeJogador2
+            //atualiza a posicao do jogador 2
+            if (posicaoJogador2 + alturaRaquete / 2 < posicaoBolaY) {
+            posicaoJogador2= posicaoJogador2+ velocidadeJogador2;
         } else{ 
-
+            posicaoJogador2= posicaoJogador2- velocidadeJogador2;
         }
+        }
+        
 
         
     </script>
