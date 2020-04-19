@@ -11,10 +11,15 @@
     <canvas id="folha" width="600" height="500"></canvas>;
     <script>
         window.onload = function() {
-            setInterval(executar, 1000 / 1000);
+            setInterval(executar, 1000 / 30);
         }
-        let posicaoBolaX = posicaoBolaY = 5;
-        let velocidadeBolaX= velocidadeBolaY=1;
+        let posicaoBolaX = posicaoBolaY = 250;
+        let velocidadeBolaX= velocidadeBolaY=7;
+        let posicaoJogador1= posicaoJogador2=225;
+        let efeitoRaquete= 0.3
+        let pontosJogador1=0;
+        let pontosJogador2=0;
+        ;
         function executar() {
             let folhaDesenho = document.getElementById('folha');
             let areaDesenho = folhaDesenho.getContext('2d');
@@ -33,9 +38,9 @@
             //linha do meio
             areaDesenho.fillRect(larguraCampo / 2, 3, larguraLinha, alturaCampo);
             //raquete jogador
-            areaDesenho.fillRect(0, alturaCampo / 2 - alturaRaquete / 2, 5, alturaRaquete);
+            areaDesenho.fillRect(0, posicaoJogador1, 5, alturaRaquete);
             //raquete computador
-            areaDesenho.fillRect(larguraCampo - 5, alturaCampo / 2 - alturaRaquete / 2, 5, alturaRaquete);
+            areaDesenho.fillRect(larguraCampo - 5, posicaoJogador2, 5, alturaRaquete);
             //bola
             areaDesenho.fillRect(posicaoBolaX,posicaoBolaY,larguraBola, alturaBola);
             
@@ -50,9 +55,35 @@
             if (posicaoBolaY>alturaCampo && velocidadeBolaY>0) {
                 velocidadeBolaY= -velocidadeBolaY;
             }
+            //verifica se o jogador 2 fez um ponto
+            if (posicaoBolaX<0)//quando bate no jogador1 
+            {
+                if (posicaoBolaY>posicaoJogador1 && posicaoBolaY< posicaoJogador1+alturaRaquete) {
+                    //rebater a bola
+                    posicaoBolaX= -velocidadeBolaX;
 
+                    let diferencaY= posicaoBolaY-(posicaoJogador1+ alturaRaquete/2);
+                    velocidadeBolaY= diferencaY * efeitoRaquete;
+                } else{
+                    pontuacaoJogador2++
+                }
+            }
+            //verifica se jogador 1 fez ponto
+            if (posicaoBolaX > larguraCampo) {
+                if (posicaoBolaY<posicaoJogador2+ alturaRaquete && posicaoBolaY>posicaoJogador2 ) {
+                    //rebaterbola
+                    posicaoBolaY= -velocidadeBolaY;
+                    var diferencaY= posicaoBolaY- (posicaoJogador2+ alturaRaquete/2);//bola pega no meio e volta reta
+                    velocidadeBolaY = diferencaY* efeitoRaquete;
 
-        }   
+                }else {
+                    //pontos jogador 1
+                    pontosJogador1++;
+                }
+            }
+        }
+
+        
     </script>
 </body>
 
